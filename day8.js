@@ -16,6 +16,69 @@ function addNumber(arr, num) {
   newArr[getLength(arr)] = num;
   return newArr;
 }
+// ---------------- Extra Functions ----------------
+
+// Get odd numbers
+function getOdds(arr) {
+  let newArr = [];
+  let j = 0;
+  for (let i = 0; i < getLength(arr); i++) {
+    if (arr[i] % 2 !== 0) {
+      newArr[j++] = arr[i];
+    }
+  }
+  return newArr;
+}
+
+// Get average
+function getAverage(arr) {
+  if (getLength(arr) === 0) return 0;
+  return sumArray(arr) / getLength(arr);
+}
+
+// Merge arrays
+function mergeArrays(arr1, arr2) {
+  let newArr = [];
+  let index = 0;
+
+  for (let i = 0; i < getLength(arr1); i++) {
+    newArr[index++] = arr1[i];
+  }
+  for (let j = 0; j < getLength(arr2); j++) {
+    newArr[index++] = arr2[j];
+  }
+  return newArr;
+}
+
+// Slice array (start, end)
+function sliceArray(arr, start, end) {
+  let newArr = [];
+  let index = 0;
+  for (let i = start; i < end && i < getLength(arr); i++) {
+    newArr[index++] = arr[i];
+  }
+  return newArr;
+}
+
+// Count occurrences of a value
+function countOccurrences(arr, value) {
+  let count = 0;
+  for (let i = 0; i < getLength(arr); i++) {
+    if (arr[i] === value) count++;
+  }
+  return count;
+}
+
+// Check if value exists
+function contains(arr, value) {
+  return getIndex(arr, value) !== -1;
+}
+
+// Find unique values only (strict unique set)
+function uniqueValues(arr) {
+  return removeDuplicates(arr); // reuse your function
+}
+
 
 // Remove last
 function removeLast(arr) {
@@ -179,6 +242,13 @@ const actions = [
   { text: "Get last", fn: () => getLast(numbers), exp: "Got last element" },
   { text: "Get index of 5", fn: () => getIndex(numbers, 5), exp: "Got index of 5" },
   { text: "Get length", fn: () => getLength(numbers), exp: "Counted elements" },
+  { text: "Get odds", fn: () => getOdds(numbers), exp: "Filtered odd numbers" },
+  { text: "Get average", fn: () => getAverage(numbers), exp: "Calculated average value" },
+  { text: "Merge with words length", fn: () => mergeArrays(numbers, [getLength(words)]), exp: "Merged numbers with length of words array" },
+  { text: "Slice 2-6", fn: () => sliceArray(numbers, 2, 6), exp: "Sliced array from index 2 to 6" },
+  { text: "Count occurrences of 5", fn: () => countOccurrences(numbers, 5), exp: "Counted how many times 5 appears" },
+  { text: "Check if 7 exists", fn: () => contains(numbers, 7), exp: "Checked existence of 7 in array" },
+  { text: "Unique values", fn: () => uniqueValues(numbers), exp: "Extracted only unique values" },
   { text: "Reverse array", fn: () => reverseArray(numbers), exp: "Reversed array" },
   { text: "Get evens", fn: () => getEvens(numbers), exp: "Filtered even numbers" },
   { text: "Sum array", fn: () => sumArray(numbers), exp: "Summed numbers" },
